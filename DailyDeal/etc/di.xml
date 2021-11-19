@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author  Tigren Solutions <info@tigren.com>
+  ~ @copyright Copyright (c) 2021 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license  Open Software License ("OSL") v. 3.0
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="daily_deal_listing_data_source" xsi:type="string">
+                    Tigren\DailyDeal\Model\ResourceModel\DailyDeal\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Tigren\DailyDeal\Model\ResourceModel\DailyDeal\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">daily_deal</argument>
+            <argument name="resourceModel" xsi:type="string">Tigren\DailyDeal\Model\ResourceModel\DailyDeal</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="tigren_deal::price" type="Tigren\DailyDeal\Plugin\ChangePrice" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Api\OrderManagementInterface">
+        <plugin name="tigren_deal::placeAfterPlugin" type="Tigren\DailyDeal\Plugin\PlaceAfterPlugin" sortOrder="99" />
+    </type>
+</config>

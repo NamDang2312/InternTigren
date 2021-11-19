@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author  Tigren Solutions <info@tigren.com>
+  ~ @copyright Copyright (c) 2021 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license  Open Software License ("OSL") v. 3.0
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="daily_deal" resource="default" engine="innodb" comment="Rule Table">
+        <column xsi:type="int" name="daily_deal_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Daily Deal"/>
+        <column xsi:type="int" name="product_id"  nullable="false" default="1"  comment="Product Id"/>
+        <column xsi:type="varchar" name="product_name"  nullable="false" default="1"  length="50" comment="Product Id"/>
+        <column xsi:type="datetime" name="start_time"    comment="Start Time"/>
+        <column xsi:type="datetime" name="end_time"  comment="End Time"/>
+        <column xsi:type="int" name="sold" default="0"  nullable="false"  comment="Deal Price"/>
+        <column xsi:type="int" name="deal_qty" default="0"  nullable="false"  comment="Deal Qty"/>
+        <column xsi:type="int" name="quantity_for_sale_via_daily_deal" default="20"  nullable="false"  comment="Deal Price"/>
+        <column xsi:type="float" name="deal_price" nullable="false"  default="0" comment="Deal Price"/>
+        <column xsi:type="int" name="status"  nullable="false" default="1"  comment="Status"/>
+        <column xsi:type="int" name="is_featured"  nullable="false" default="1"  comment="Is Featured"/>
+        <column xsi:type="varchar" name="store_id"  nullable="false" default="1"  comment="Store Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="daily_deal_id"/>
+        </constraint>
+    </table>
+</schema>

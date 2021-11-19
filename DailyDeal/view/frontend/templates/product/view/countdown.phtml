@@ -1,0 +1,21 @@
+<?php $deal = $block->getDeal();
+/*
+ * @author  Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2021 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license  Open Software License ("OSL") v. 3.0
+ */
+
+if ($deal) { ?>
+
+    <p id="demo"></p>
+    <div><?= $deal->getDealQty() - $deal->getSold() ?> item(s) left |
+        <?= $deal->getSold() ?> item(s) sold
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Tigren_DailyDeal/js/countdown": {"endTime" : "<?= $deal->getEndTime() ?>"}
+        }
+    }
+    </script>
+<?php } ?>
